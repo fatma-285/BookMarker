@@ -6,13 +6,50 @@
   font-family: Pacifico;
   src: url(../webfonts/Pacifico/Pacifico-Regular.ttf);
 }
+
+:root {
+  --bg-primary: #f7ecdf;
+  --bg-secondary: #fcbc4c;
+  --text-primary: #1f2630;
+  --bg-tertiary: #1f2630;
+  --text-linear-1: #3ca55c;
+  --text-linear-2: #e0d23e;
+}
+
+:root .dark {
+  --bg-primary: #2a4759;
+  --bg-custom: #2a4759;
+  --bg-secondary: #f79b72;
+  --bg-tertiary: #eeeeee;
+  --text-primary: #dddddd;
+  --text-linear-1: #f79b72;
+  --text-linear-2: #eeeeee;
+}
+
 body {
-  background-color: rgb(247, 236, 223);
+  background-color: var(--bg-primary);
   font-family: cursive;
+}
+body::selection{
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+.theme-toggle-btn {
+  background-color: var(--bg-secondary);
+  border: none;
+  cursor: pointer;
+  padding: 9.5px 12px;
+ top: 20px !important;
+  right: 20px !important;
+}
+.theme-toggle-btn i {
+  font-size: 1.3rem;
+  color:var(--bg-primary);
 }
 h1 {
   font-family: Pacifico;
   font-size: 3.125rem;
+  color: var(--bg-tertiary);
 }
 h1::before {
   content: "";
@@ -21,8 +58,8 @@ h1::before {
   height: 35%;
   left: 0;
   bottom: 0px;
-  background-color: #fec260;
-  transition: height .5s;
+  background-color: var(--bg-secondary);
+  transition: height 0.5s;
   z-index: -1;
 }
 h1:hover::before {
@@ -31,14 +68,28 @@ h1:hover::before {
 .bookmark-form {
   border-width: 2px 0 2px 0;
   border-style: dotted;
+  border-color: var(--bg-tertiary);
 }
 .bookmark-form p {
   font-family: Righteous;
-  background-image: linear-gradient(to right, #3ca55c, hsl(55, 72%, 56%));
+  background-image: linear-gradient(
+    50deg,
+    var(--text-linear-1),
+    var(--text-linear-2)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-.bookmark-form button{
-  background-color: #d1512d !important;
+.bookmark-form button {
+  background-color: var(--bg-secondary) !important;
+}
+label {
+  color: var(--text-primary);
+}
+table {
+  --bs-table-color: var(--bg-custom) !important;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius:12px;
 }

@@ -3,29 +3,36 @@ var siteUrlInput = document.getElementById("siteURL");
 
 var sitesList = [];
 
+var lightIcon = document.getElementById("icon-sun");
+var darkIcon = document.getElementById("icon-moon");
+
 if (JSON.parse(localStorage.getItem("allSites"))) {
   sitesList = JSON.parse(localStorage.getItem("allSites"));
   displaySites(sitesList);
 }
 
-function addSite() {
+document.querySelector('#addSiteBtn').addEventListener('click',function(){
   var site = {
     name: siteNameInput.value,
     url: siteUrlInput.value,
   };
+
   if (validateInputs(siteNameInput) && validateInputs(siteUrlInput)) {
     sitesList.push(site);
     clearForm();
     localStorage.setItem("allSites", JSON.stringify(sitesList));
     displaySites(sitesList);
-    removeValidMarkAfterAdd();
   }
+  
   console.log(sitesList);
-}
+});
+
 
 function clearForm() {
   siteNameInput.value = "";
   siteUrlInput.value = "";
+  siteNameInput.classList.remove("is-valid");
+  siteUrlInput.classList.remove("is-valid");
 }
 
 function displaySites(list) {
@@ -34,7 +41,7 @@ function displaySites(list) {
     blackBox += `<tr>
                      <th scope="row">${i + 1}</th>
                     <td>${list[i].name}</td>
-                    <td><button class="btn btn-success" onclick="visitSite(${i})"><i class="fa-solid fa-eye me-1"></i>Visit</button></td>
+                    <td><button class="btn btn-success bg-opacity-50" onclick="visitSite(${i})"><i class="fa-solid fa-eye me-1"></i>Visit</button></td>
                     <td><button class="btn btn-danger" onclick="deleteSite(${i})"><i class="fa-solid fa-trash me-1"></i>Delete</button></td>
                     </tr>`;
   }
@@ -59,8 +66,9 @@ function validateInputs(element) {
     siteURL:
       /^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)$/,
   };
+
   var isValid = regex[element.id].test(element.value);
-  console.log(isValid);
+  
   if (isValid) {
     element.classList.add("is-valid");
     element.classList.remove("is-invalid");
@@ -72,12 +80,15 @@ function validateInputs(element) {
   }
   return isValid;
 }
-function removeValidMarkAfterAdd() {
-  siteNameInput.classList.remove("is-valid");
-  siteUrlInput.classList.remove("is-valid");
-}
 
-function toggleTheme() {
-  document.body.classList.toggle("dark-theme");
-}
+document.querySelector('#theme-toggle').addEventListener('click',function () {
+  document.body.classList.toggle("dark");
+  var isDark = document.body.classList.contains("dark");
   
+  lightIcon.classList.toggle("d-none", !isDark);
+  lightIcon.classList.toggle("d-block", isDark);
+
+  darkIcon.classList.toggle("d-none", isDark);
+  darkIcon.classList.toggle("d-block", !isDark);
+  
+})
