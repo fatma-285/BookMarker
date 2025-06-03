@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarker</title>
+    <link rel="icon"  href="./images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <!-- <button class="btn btn-secondary ms-2" onclick="toggleTheme()">
+                <i class="fa-solid fa-circle-half-stroke"></i> Toggle Theme
+            </button> -->
+            <div class="content">
+                <div class="content-head py-5 text-center">
+                    <h1 class=" d-inline-block position-relative"> Bookmarker</h1>
+                </div>
+                <div class="bookmark-form py-3 d-flex flex-column g-5">
+                    <p class="h4 text-center"><i class="fa-solid fa-bookmark "></i> Bookmark your favorite sites <i class="fa-solid fa-bookmark "></i></p>
+                    <div class="mb-3">
+                        <label for="siteName" class="form-label fw-bold mb-2"><i class="fa-solid fa-book-bookmark"></i> Site Name</label>
+                        <input oninput="validateInputs(this)" type="text" class="form-control" id="siteName"
+                            placeholder="Bookmark Name">
+                            <span class="text-danger d-none">Site Name must be at least 3 characters</span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="siteURL" class="form-label fw-bold mb-2"><i class="fa-solid fa-link"></i> Site URL</label>
+                        <input oninput="validateInputs(this)" type="text" class="form-control" id="siteURL"
+                            placeholder="Website URL">
+                    <span class="text-danger d-none">URL must be valid one   </span>
+
+                    </div>
+                    <button class="btn px-5 align-self-center text-white" onclick="addSite()">Submit</button>
+                </div>
+            </div>
+            <div class="table py-4">
+                <table class="table caption-top text-center ">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Website Name</th>
+                            <th scope="col">Visit</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allSites" >
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </header>
+    <script src="./Js/index.js"></script>
+    <script src="./Js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
